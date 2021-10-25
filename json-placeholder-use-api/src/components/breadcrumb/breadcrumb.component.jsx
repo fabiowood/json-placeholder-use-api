@@ -2,21 +2,37 @@
 import React from "react";
 import "./breadcrumb.styles.scss";
 
-const BreadCrumb = () => {
+const defineLocationName = () => {
   let locationAdjustedPathName = "";
-  switch (window.location.pathname) {
-    case "/albums":
-      locationAdjustedPathName = "Álbuns e Fotografias";
-      break;
-    case "/posts":
-      locationAdjustedPathName = "Posts e Comments";
-      break;
-    case "/tasks":
-      locationAdjustedPathName = "Tarefas";
-      break;
-    default:
-      locationAdjustedPathName = "JSON PlaceHolder Use API";
+  
+  if (window.location.pathname.includes("photos"))
+    locationAdjustedPathName = "Fotografias";
+
+  if (window.location.pathname.includes("comments"))
+    locationAdjustedPathName = "Comentários";
+
+  if (!locationAdjustedPathName) {
+    switch (window.location.pathname) {
+      case "/albums":
+        locationAdjustedPathName = "Álbuns";
+        break;
+      case "/posts":
+        locationAdjustedPathName = "Posts";
+        break;
+      case "/tasks":
+        locationAdjustedPathName = "Tarefas";
+        break;
+      default:
+        locationAdjustedPathName = "JSON PlaceHolder Use API";
+    }
   }
+
+  return locationAdjustedPathName;
+};
+
+const BreadCrumb = () => {
+  const locationAdjustedPathName = defineLocationName();
+
   return (
     <section className="breadcrumb-container">
       <p>

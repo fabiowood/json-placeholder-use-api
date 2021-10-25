@@ -1,8 +1,6 @@
 import React from "react";
 import "./home-page.styles.scss";
 
-// Component Dependencies:
-
 const HomePage = () => {
   return (
     <section className="home-page">
@@ -15,7 +13,7 @@ const HomePage = () => {
         </article>
         <article className="home-page-container-option">
           <h2>
-            <a href="/posts">Posts/Comments</a>
+            <a href="/posts">Posts</a>
           </h2>
         </article>
         <article className="home-page-container-option">

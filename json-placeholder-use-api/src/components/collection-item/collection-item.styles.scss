@@ -1,0 +1,33 @@
+.collection-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 200px;
+  width: 75%;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 2px solid #4caf50;
+  cursor: pointer;
+
+  .collection-item-content {
+    height: 50px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+
+    .collection-item-image {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .collection-item-view-link {
+    height: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+}
