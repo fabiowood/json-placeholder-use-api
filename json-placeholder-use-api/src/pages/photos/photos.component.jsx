@@ -4,7 +4,7 @@ import Collection from "../../components/collection/collection.component";
 
 const Photos = ({ match }) => {
   const { albumId, albumTitle } = match.params;
- 
+
   const [photos, setPhotosList] = useState([]);
 
   useEffect(() => {

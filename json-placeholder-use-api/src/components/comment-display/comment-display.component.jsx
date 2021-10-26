@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
+import "./comment-display.styles.scss";
 
 const CommentDisplay = ({ location }) => {
   const [comment, setComment] = useState([]);
@@ -14,13 +15,22 @@ const CommentDisplay = ({ location }) => {
   }, [location.pathname]);
 
   return (
-    <ul>
-      {
-        Object.entries(comment).map(([key, value]) => {
-        return <li key={key}>{`${key}: ${value}`}</li>;
-        })
-      }
-    </ul>
+    <Fragment>
+      <ul className="comment-display-container">
+        {Object.entries(comment).map(([key, value]) => {
+          if (key === "name") key = "Nome";
+          if (key === "body") key = "Comentário";
+          return (
+            <Fragment>
+              <li key={key} className="comment-display-item">
+                <strong>{`${key}:`}</strong> {`${value}`}
+              </li>
+            </Fragment>
+          );
+        })}
+        <a href="/posts">Ver Posts</a>
+      </ul>
+    </Fragment>
   );
 };
 

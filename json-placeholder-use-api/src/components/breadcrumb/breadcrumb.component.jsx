@@ -1,10 +1,11 @@
-/* eslint-disable default-case */
 import React from "react";
 import "./breadcrumb.styles.scss";
 
+import { withRouter } from "react-router-dom";
+
 const defineLocationName = () => {
   let locationAdjustedPathName = "";
-  
+
   if (window.location.pathname.includes("photos"))
     locationAdjustedPathName = "Fotografias";
 
@@ -17,10 +18,10 @@ const defineLocationName = () => {
         locationAdjustedPathName = "Álbuns";
         break;
       case "/posts":
-        locationAdjustedPathName = "Posts";
+        locationAdjustedPathName = "Postagens";
         break;
       case "/tasks":
-        locationAdjustedPathName = "Tarefas";
+        locationAdjustedPathName = "To-Dos";
         break;
       default:
         locationAdjustedPathName = "JSON PlaceHolder Use API";
@@ -30,7 +31,7 @@ const defineLocationName = () => {
   return locationAdjustedPathName;
 };
 
-const BreadCrumb = () => {
+const BreadCrumb = ({ location }) => {
   const locationAdjustedPathName = defineLocationName();
 
   return (
@@ -45,4 +46,4 @@ const BreadCrumb = () => {
   );
 };
 
-export default BreadCrumb;
+export default withRouter(BreadCrumb);

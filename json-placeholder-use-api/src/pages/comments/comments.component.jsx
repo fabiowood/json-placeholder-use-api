@@ -4,7 +4,7 @@ import Collection from "../../components/collection/collection.component";
 
 const Comments = ({ match }) => {
   const { postId, postTitle } = match.params;
-  
+
   const [comments, setCommentsList] = useState([]);
 
   useEffect(() => {

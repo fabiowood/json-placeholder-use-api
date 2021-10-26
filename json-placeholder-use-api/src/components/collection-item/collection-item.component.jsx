@@ -1,6 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { withRouter } from "react-router-dom";
 import "./collection-item.styles.scss";
+
+import AlbumImage from "../../assets/photo-album.jpg";
+import PostImage from "../../assets/photo-post.jpg";
+import TodosImage from "../../assets/photo-todos.jpg";
+import CommentsImage from "../../assets/photo-comment.jpg";
 
 const displayItemImage = ({ key, value }) => {
   return (
@@ -24,27 +29,27 @@ const displayKey = ({ key }) => {
   );
 };
 
-const buildCollectionItemsDisplay = ({
-  collectionItem,
-  collectionItemType,
-}) => {
+const buildCollectionItemsDisplay = ({ collectionItem }) => {
   const collectionItemProperties = Object.entries(collectionItem);
 
   const listCollectionItemProperties = collectionItemProperties.map(
     ([key, value]) => {
       if (key === "thumbnailUrl") return displayItemImage({ key, value });
 
-      if (
-        (key === "title" || key === "body") &&
-        collectionItemType !== "task"
-      ) {
+      if (key === "title" || key === "body") {
         value = `${value.slice(0, 16)}...`;
         key = key === "title" ? "" : "Texto";
       }
       if (key === "name") key = "Postado por";
+      if (key === "completed") {
+        key = "";
+        value = value ? "Done!" : "Pending!";
+      }
 
       return displayKey({ key }) ? (
-        <p key={key}>{`${key === "" ? "" : `${key}:`} ${value}`}</p>
+        <p key={key}>
+          <strong>{`${key === "" ? "" : `${key}:`}`}</strong> {`${value}`}
+        </p>
       ) : null;
     }
   );
@@ -58,7 +63,7 @@ const directToItemDetails = ({
   history,
 }) => {
   if (collectionItemType === "task" || collectionItemType === "photo") return;
-  
+
   if (collectionItemType === "album") {
     return history.push(
       `/photos/${collectionItem?.id}/${collectionItem?.title.replaceAll(
@@ -83,7 +88,6 @@ const directToItemDetails = ({
 const CollectionItem = ({ collectionItem, collectionItemType, history }) => {
   const listCollectionItemProperties = buildCollectionItemsDisplay({
     collectionItem,
-    collectionItemType,
   });
 
   return (
@@ -103,13 +107,43 @@ const CollectionItem = ({ collectionItem, collectionItemType, history }) => {
 
       {
         collectionItemType === "album" && (
-        <div className="collection-item-view-link">Ver Álbum</div>
+        <Fragment>
+          <figure className="collection-item-image-container">
+            <img src={`${AlbumImage}`} alt="Access Album" />
+          </figure>
+          <div className="collection-item-view-link">Ver Álbum</div>
+        </Fragment>
         )
       }
 
       {
         collectionItemType === "post" && (
-        <div className="collection-item-view-link">Ver Comentários</div>
+        <Fragment>
+          <figure className="collection-item-image-container">
+            <img src={`${PostImage}`} alt="Access Post" />
+          </figure>
+          <div className="collection-item-view-link">Ver Comentários</div>
+        </Fragment>
+        )
+      }
+
+      {
+        collectionItemType === "task" && (
+        <Fragment>
+          <figure className="collection-item-image-container">
+            <img src={`${TodosImage}`} alt="Access Images" />
+          </figure>
+        </Fragment>
+        )
+      }
+
+      {
+        collectionItemType === "comment" && (
+        <Fragment>
+          <figure className="collection-item-image-container">
+            <img src={`${CommentsImage}`} alt="Access Comments to Post" />
+          </figure>
+        </Fragment>
         )
       }
     </article>
