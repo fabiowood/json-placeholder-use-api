@@ -11,11 +11,13 @@ uma API Rest, notadamente, a https://jsonplaceholder.typicode.com/
 
 - A aplicação está estruturada em três principais seções:
 
-(i) Álbuns: seção em que é possível visualizar os álbuns existentes e as
+(a) Álbuns: seção em que é possível visualizar os álbuns existentes e as
 fotografias contidas em cada álbum.
-(ii) Postagens: seção em que é possível visualizar as postagens existentes
+
+(b) Postagens: seção em que é possível visualizar as postagens existentes
 e os comentários contidos em cada postagem.
-(iii) To-dos: seção em que é possível visualizar as tarefas existentes e os
+
+(c) To-dos: seção em que é possível visualizar as tarefas existentes e os
 respectivos status.
 
 3) Estrutura da Aplicação
